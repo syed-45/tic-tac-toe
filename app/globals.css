@@ -24,4 +24,16 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+    text-align: center; padding: 50px; 
 }
+
+h1 { font-size: 50px; }
+body { font: 20px Helvetica, sans-serif; color: #e0e0e0; }
+#article { display: block; text-align: left; width: auto; margin: 0 auto; }
+a { color: #dc8100; text-decoration: none; }
+a:hover { color: #333; text-decoration: none; }
+.square { border: 2px grey solid; width: 80%; height: 100px; }
+.nine-squares { display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 0px; /* Optional gap between the grid items */}
