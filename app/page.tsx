@@ -131,7 +131,7 @@ export default function Home() {
         <main className='nine-squares'>
         {squares.map((square,index) => {
           return (
-          <Square OOrX={square.OOrX} status={status} handleSquareClick={handleSquareClick} index={index}/>
+          <Square OOrX={square.OOrX} status={status} handleSquareClick={handleSquareClick} index={index} key={index}/>
           )
         })
         }
