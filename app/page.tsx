@@ -4,8 +4,6 @@ import { Square } from './Square'
 type squareType = '' | 'O' | 'X'
 
 export default function Home() {
-  // oneSquare = {OOrX: O | X | empty}
-  // useEffect => if (3 in a row i.e squares[1] === squares[2] === squares[3]... ) => WINNER
   const [status, setStatus] = useState('Next player: X')
   const [squares, setSquares] = useState<squareType[]>(Array(9).fill(''))
 
@@ -73,6 +71,9 @@ export default function Home() {
     } else if (squares[2] === 'O' && squares[4] === 'O'  && 'O' === squares[6]) {
       setStatus('Winner: O')
     } 
+    else if (!squares.includes('')) {
+      setStatus('Tie')
+    }
     else if (status==='Next player: X') {
       setStatus('Next player: O')
     } else {
