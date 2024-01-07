@@ -5,113 +5,72 @@ type squareType = '' | 'O' | 'X'
 
 export default function Home() {
   // oneSquare = {OOrX: O | X | empty}
-  // useEffect => if (3 in a row i.e squares[1].OOrX === squares[2].OOrX === squares[3].OOrX... ) => WINNER
+  // useEffect => if (3 in a row i.e squares[1] === squares[2] === squares[3]... ) => WINNER
   const [status, setStatus] = useState('Next player: X')
-  const [squares, setSquares] = useState([{
-    OOrX: ''
-  },{
-    OOrX: ''
-  },{
-    OOrX: ''
-  },{
-    OOrX: ''
-  },{
-    OOrX: ''
-  },{
-    OOrX: ''
-  },{
-    OOrX: ''
-  },{
-    OOrX: ''
-  },{
-    OOrX: ''
-  },
-  ]
-  )
+  const [squares, setSquares] = useState<squareType[]>(Array(9).fill(''))
 
   function resetGame() {
-    setSquares([{
-    OOrX: ''
-  },{
-    OOrX: ''
-  },{
-    OOrX: ''
-  },{
-    OOrX: ''
-  },{
-    OOrX: ''
-  },{
-    OOrX: ''
-  },{
-    OOrX: ''
-  },{
-    OOrX: ''
-  },{
-    OOrX: ''
-  },
-  ])
+    setSquares(Array(9).fill(''))
   }
 
   function handleSquareClick(index:number) {
     if (status.includes('Winner')) {
       alert('reset game!')
-    } else if (squares[index].OOrX!=='') {
+    } else if (squares[index]!=='') {
       
     } else {
     setSquares((prev) => {
-      const newSquares = [...prev]
-      newSquares[index] = {
-        OOrX: status.slice(-1)
-        }
+      const newSquares: squareType[] = [...prev]
+      newSquares[index] = status.slice(-1) as squareType
       return newSquares
     })
     }
   }
 
   useEffect(()=>{
-    if (squares[0].OOrX === 'X' && squares[1].OOrX === 'X'  && 'X' === squares[2].OOrX) {
+    if (squares[0] === 'X' && squares[1] === 'X'  && 'X' === squares[2]) {
       setStatus('Winner: X')
-    } else if (squares[3].OOrX === 'X' && squares[4].OOrX === 'X'  && 'X' === squares[5].OOrX) {
+    } else if (squares[3] === 'X' && squares[4] === 'X'  && 'X' === squares[5]) {
       setStatus('Winner: X')
-    } else if (squares[6].OOrX === 'X' && squares[7].OOrX === 'X'  && 'X' === squares[8].OOrX) {
-      setStatus('Winner: X')
-    }
-    else if (squares[0].OOrX === 'X' && squares[3].OOrX === 'X'  && 'X' === squares[6].OOrX) {
+    } else if (squares[6] === 'X' && squares[7] === 'X'  && 'X' === squares[8]) {
       setStatus('Winner: X')
     }
-    else if (squares[1].OOrX === 'X' && squares[4].OOrX === 'X'  && 'X' === squares[7].OOrX) {
+    else if (squares[0] === 'X' && squares[3] === 'X'  && 'X' === squares[6]) {
       setStatus('Winner: X')
     }
-    else if (squares[2].OOrX === 'X' && squares[5].OOrX === 'X'  && 'X' === squares[8].OOrX) {
+    else if (squares[1] === 'X' && squares[4] === 'X'  && 'X' === squares[7]) {
       setStatus('Winner: X')
     }
-    else if (squares[6].OOrX === 'X' && squares[7].OOrX === 'X'  && 'X' === squares[8].OOrX) {
+    else if (squares[2] === 'X' && squares[5] === 'X'  && 'X' === squares[8]) {
       setStatus('Winner: X')
-    } else if (squares[0].OOrX === 'X' && squares[4].OOrX === 'X'  && 'X' === squares[8].OOrX) {
+    }
+    else if (squares[6] === 'X' && squares[7] === 'X'  && 'X' === squares[8]) {
       setStatus('Winner: X')
-    } else if (squares[2].OOrX === 'X' && squares[4].OOrX === 'X'  && 'X' === squares[6].OOrX) {
+    } else if (squares[0] === 'X' && squares[4] === 'X'  && 'X' === squares[8]) {
       setStatus('Winner: X')
-    }  else if (squares[0].OOrX === 'O' && squares[1].OOrX === 'O'  && 'O' === squares[2].OOrX) {
+    } else if (squares[2] === 'X' && squares[4] === 'X'  && 'X' === squares[6]) {
+      setStatus('Winner: X')
+    }  else if (squares[0] === 'O' && squares[1] === 'O'  && 'O' === squares[2]) {
       setStatus('Winner: O')
-    } else if (squares[3].OOrX === 'O' && squares[4].OOrX === 'O'  && 'O' === squares[5].OOrX) {
+    } else if (squares[3] === 'O' && squares[4] === 'O'  && 'O' === squares[5]) {
       setStatus('Winner: O')
-    } else if (squares[6].OOrX === 'O' && squares[7].OOrX === 'O'  && 'O' === squares[8].OOrX) {
-      setStatus('Winner: O')
-    }
-    else if (squares[0].OOrX === 'O' && squares[3].OOrX === 'O'  && 'O' === squares[6].OOrX) {
-      setStatus('Winner: O')
-    }
-    else if (squares[1].OOrX === 'O' && squares[4].OOrX === 'O'  && 'O' === squares[7].OOrX) {
+    } else if (squares[6] === 'O' && squares[7] === 'O'  && 'O' === squares[8]) {
       setStatus('Winner: O')
     }
-    else if (squares[2].OOrX === 'O' && squares[5].OOrX === 'O'  && 'O' === squares[8].OOrX) {
+    else if (squares[0] === 'O' && squares[3] === 'O'  && 'O' === squares[6]) {
       setStatus('Winner: O')
     }
-    else if (squares[6].OOrX === 'O' && squares[7].OOrX === 'O'  && 'O' === squares[8].OOrX) {
+    else if (squares[1] === 'O' && squares[4] === 'O'  && 'O' === squares[7]) {
       setStatus('Winner: O')
-    } else if (squares[0].OOrX === 'O' && squares[4].OOrX === 'O'  && 'O' === squares[8].OOrX) {
+    }
+    else if (squares[2] === 'O' && squares[5] === 'O'  && 'O' === squares[8]) {
       setStatus('Winner: O')
-    } else if (squares[2].OOrX === 'O' && squares[4].OOrX === 'O'  && 'O' === squares[6].OOrX) {
+    }
+    else if (squares[6] === 'O' && squares[7] === 'O'  && 'O' === squares[8]) {
+      setStatus('Winner: O')
+    } else if (squares[0] === 'O' && squares[4] === 'O'  && 'O' === squares[8]) {
+      setStatus('Winner: O')
+    } else if (squares[2] === 'O' && squares[4] === 'O'  && 'O' === squares[6]) {
       setStatus('Winner: O')
     } 
     else if (status==='Next player: X') {
@@ -129,9 +88,9 @@ export default function Home() {
         <div className='status'></div>
         <div className='status'>{status}</div>
         <main className='nine-squares'>
-        {squares.map((square,index) => {
+        {squares.map((squareSymbol,index) => {
           return (
-          <Square OOrX={square.OOrX} status={status} handleSquareClick={handleSquareClick} index={index} key={index}/>
+          <Square squareSymbol={squareSymbol} status={status} handleSquareClick={handleSquareClick} index={index} key={index}/>
           )
         })
         }
